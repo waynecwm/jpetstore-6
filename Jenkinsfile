@@ -8,5 +8,20 @@ pipeline {
         echo 'Build step complete'
       }
     }
+    stage('Testing stage') {
+      parallel {
+        stage('Testing stage') {
+          steps {
+            sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:8081 -Dlicense.skip=true'
+          }
+        }
+        stage('SonarQube Test') {
+          steps {
+            echo 'The tester is ${TESTER}'
+            sleep 10
+          }
+        }
+      }
+    }
   }
 }
