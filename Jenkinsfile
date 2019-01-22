@@ -10,12 +10,12 @@ pipeline {
     }
     stage('Testing stage') {
       parallel {
-        stage('Testing stage') {
+        stage('SonarQube Test') {
           steps {
             sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:8081 -Dlicense.skip=true'
           }
         }
-        stage('SonarQube Test') {
+        stage('Print Tester Credentials') {
           steps {
             echo 'The tester is ${TESTER}'
             sleep 10
